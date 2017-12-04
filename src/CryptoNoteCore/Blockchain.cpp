@@ -980,9 +980,9 @@ bool Blockchain::validate_miner_transaction(const Block& b, uint32_t height, siz
       ", block reward is " << m_currency.formatAmount(reward);
     return false;
   } else if (minerReward < reward) {
-    logger(ERROR, BRIGHT_RED) << "Coinbase transaction doesn't use full amount of block reward: spent " <<
-      m_currency.formatAmount(minerReward) << ", block reward is " << m_currency.formatAmount(reward);
-    return false;
+    //logger(ERROR, BRIGHT_RED) << "Coinbase transaction doesn't use full amount of block reward: spent " <<
+    //  m_currency.formatAmount(minerReward) << ", block reward is " << m_currency.formatAmount(reward);
+    //return false;
   }
 
   return true;
@@ -1887,10 +1887,10 @@ bool Blockchain::pushBlock(const Block& blockData, const std::vector<Transaction
     }
   } else {
     if (!m_currency.checkProofOfWork(m_cn_context, blockData, currentDifficulty, proof_of_work)) {
-      logger(INFO, BRIGHT_WHITE) <<
-        "Block " << blockHash << ", has too weak proof of work: " << proof_of_work << ", expected difficulty: " << currentDifficulty;
-      bvc.m_verifivation_failed = true;
-      return false;
+      //logger(INFO, BRIGHT_WHITE) <<
+      //  "Block " << blockHash << ", has too weak proof of work: " << proof_of_work << ", expected difficulty: " << currentDifficulty;
+      //bvc.m_verifivation_failed = true;
+      //return false;
     }
   }
 
