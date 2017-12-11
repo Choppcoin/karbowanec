@@ -123,7 +123,8 @@ const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "";
 const char* const SEED_NODES[] = { 
 	"45.55.141.227:8313",
 	"138.197.222.188:8313",
-	"45.55.172.1:8313"
+	"45.55.172.1:8313",
+	"35.200.110.7:8313"
   /*
   "seed1.karbowanec.com:32347",
   "seed2.karbowanec.com:32347",
@@ -137,7 +138,10 @@ struct CheckpointData {
   const char* blockId;
 };
 
-const std::initializer_list<CheckpointData> CHECKPOINTS = { /*
+const std::initializer_list<CheckpointData> CHECKPOINTS = { 
+	{24758, "ef7b7c3803df58e06b21dde88c252569f118cda2fafeae9b56c6061e7c4c18eb" },
+	{24759, "c244f99cbcdae7eadbe19e72d17746cdb36b3fb5a446e2cd464a1bf8e4264f3c" }
+	/*
   {3436,	"fa0348c379f63af68304f9f256ea99cc8560eda5a25740dc7ff94631fc7fcf5d" },
   {16970,	"456e43e923a02516559d89f567c3fa2068051a9fdac562a937eeaaaf3e9aab46" },
   {30000,	"4d9762f83ebebb462f1787862aa001e954dadafd203d2fdb973e4b2e52891cf4" },
