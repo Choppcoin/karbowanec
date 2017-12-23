@@ -482,13 +482,24 @@ namespace CryptoNote {
 				timeSpan = 1;
 			}
 
+			// Date to make the difficulty target larger
+			// logger(INFO) << "Currency::nextDifficulty prototype1. Last timestamp: " << timestamps[timestamps.size() - 1];
+			uint32_t finalTarget;
+			if (timestamps[timestamps.size() - 1] >= 1513931400) {
+				finalTarget = 240;
+				// logger(INFO) << "Target changed to: " << finalTarget;
+			}
+			else {
+				finalTarget = 120;
+			} // m_difficultyTarget
+
 			difficulty_type totalWork = cumulativeDifficulties.back() - cumulativeDifficulties.front();
 			assert(totalWork > 0);
 
 			// uint64_t nextDiffZ = totalWork * m_difficultyTarget / timeSpan; 
 
  			uint64_t low, high;
-			low = mul128(totalWork, m_difficultyTarget, &high);
+			low = mul128(totalWork, finalTarget, &high);
 			// blockchain error "Difficulty overhead" if this function returns zero
 			if (high != 0) {
 				return 0;
@@ -541,11 +552,22 @@ namespace CryptoNote {
 				timeSpan = 1;
 			}
 
+			// Date to make the difficulty target larger
+			// logger(INFO) << "Currency::nextDifficulty prototype1. Last timestamp: " << timestamps[timestamps.size() - 1];
+			uint32_t finalTarget;
+			if (timestamps[timestamps.size() - 1] >= 1513931400) {
+				finalTarget = 240;
+				// logger(INFO) << "Target changed to: " << finalTarget;
+			}
+			else {
+				finalTarget = 120;
+			} // m_difficultyTarget
+
 			difficulty_type totalWork = cumulativeDifficulties[cutEnd - 1] - cumulativeDifficulties[cutBegin];
 			assert(totalWork > 0);
 
 			uint64_t low, high;
-			low = mul128(totalWork, m_difficultyTarget, &high);
+			low = mul128(totalWork, finalTarget, &high);
 			if (high != 0 || low + timeSpan - 1 < low) {
 				return 0;
 			}

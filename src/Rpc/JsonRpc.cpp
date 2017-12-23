@@ -38,9 +38,22 @@ JsonRpcError::JsonRpcError(int c) : code(c) {
 JsonRpcError::JsonRpcError(int c, const std::string& msg) : code(c), message(msg) {
 }
 
+std::string ReplaceAll(std::string str, const std::string& from, const std::string& to) {
+	size_t start_pos = 0;
+	while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
+		str.replace(start_pos, from.length(), to);
+		start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+	}
+	return str;
+}
+
 void invokeJsonRpcCommand(HttpClient& httpClient, JsonRpcRequest& jsReq, JsonRpcResponse& jsRes) {
   HttpRequest httpReq;
   HttpResponse httpRes;
+
+  //std::string s = jsReq.getBody();
+  //s = ReplaceAll(s, "\"", "\\\"");
+  //s = ReplaceAll(s, "\'", "\"");
 
   httpReq.setUrl("/json_rpc");
   httpReq.setBody(jsReq.getBody());
