@@ -49,9 +49,9 @@ const uint64_t MINIMUM_FEE                                   = UINT64_C(1000);
 const uint64_t DEFAULT_DUST_THRESHOLD                        = UINT64_C(1000);
 
 const uint64_t DIFFICULTY_TARGET                             = 120; // seconds
-const uint64_t EXPECTED_NUMBER_OF_BLOCKS_PER_DAY             = 24 * 60 * 60 / DIFFICULTY_TARGET;
-const size_t   DIFFICULTY_WINDOW							 = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY; // blocks
-const size_t   DIFFICULTY_WINDOW_V2                          = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY; // blocks
+const uint64_t EXPECTED_NUMBER_OF_BLOCKS_PER_DAY			 = 360; // 24 * 60 * 60 / DIFFICULTY_TARGET;
+const size_t   DIFFICULTY_WINDOW							 = 36; // EXPECTED_NUMBER_OF_BLOCKS_PER_DAY; // blocks
+const size_t   DIFFICULTY_WINDOW_V2							 = 36; // EXPECTED_NUMBER_OF_BLOCKS_PER_DAY; // blocks
 const size_t   DIFFICULTY_CUT                                = 0;  // timestamps to cut after sorting
 const size_t   DIFFICULTY_LAG                                = 0;  // !!!
 static_assert(2 * DIFFICULTY_CUT <= DIFFICULTY_WINDOW - 2, "Bad DIFFICULTY_WINDOW or DIFFICULTY_CUT");
@@ -64,8 +64,8 @@ const uint64_t CRYPTONOTE_LOCKED_TX_ALLOWED_DELTA_BLOCKS     = 1;
 const uint64_t CRYPTONOTE_LOCKED_TX_ALLOWED_DELTA_SECONDS    = DIFFICULTY_TARGET * CRYPTONOTE_LOCKED_TX_ALLOWED_DELTA_BLOCKS;
 
 const uint64_t CRYPTONOTE_MEMPOOL_TX_LIVETIME                = 60 * 60 * 24;     //seconds, one day
-const uint64_t CRYPTONOTE_MEMPOOL_TX_FROM_ALT_BLOCK_LIVETIME = 60 * 60 * 24 * 7; //seconds, one week
-const uint64_t CRYPTONOTE_NUMBER_OF_PERIODS_TO_FORGET_TX_DELETED_FROM_POOL = 7;  // CRYPTONOTE_NUMBER_OF_PERIODS_TO_FORGET_TX_DELETED_FROM_POOL * CRYPTONOTE_MEMPOOL_TX_LIVETIME = time to forget tx
+const uint64_t CRYPTONOTE_MEMPOOL_TX_FROM_ALT_BLOCK_LIVETIME = 60 * 60 * 24 * 1; //7; //seconds, one week
+const uint64_t CRYPTONOTE_NUMBER_OF_PERIODS_TO_FORGET_TX_DELETED_FROM_POOL = 1; // 7;  // CRYPTONOTE_NUMBER_OF_PERIODS_TO_FORGET_TX_DELETED_FROM_POOL * CRYPTONOTE_MEMPOOL_TX_LIVETIME = time to forget tx
 
 const size_t   FUSION_TX_MAX_SIZE                            = CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_CURRENT * 30 / 100;
 const size_t   FUSION_TX_MIN_INPUT_COUNT                     = 12;
@@ -152,7 +152,11 @@ const std::initializer_list<CheckpointData> CHECKPOINTS = {
 	{ 32369, "38705adb21b1eaa6c09225b534d55ab74e7a30f198bafeeedd00ea0de4d517a3" },
 	{ 32370, "055aff89d01f240120ff6e328ae40304bb0d1c1b3a4db857125fe6e2000572bf" },
 	{ 32524, "daaa655ca784f2ed0544f2f555ccad6ac030333ef2fb8ca8739de8d812b404ae" },
-	{ 32525, "ff9d83adabd88968b25d00fe1c80d53b172424b62c78b0597b4a4cebc0f121e7" }
+	{ 32525, "ff9d83adabd88968b25d00fe1c80d53b172424b62c78b0597b4a4cebc0f121e7" },
+	{ 33000, "e154e8df0facc073503e013e7ed7f2413f05cd46c9769d468767b3aed49c839f" },
+	{ 34000, "ec556ea2bd8b50ad9e83c7f7fa79fa84bbcf6d8288ccf6e2c4b96af644a8f581" },
+	{ 35000, "7eac17f1c048a141f60ee39332a4c0ee873a09eb53e35d6f7172ce78bfb56e8c" },
+	{ 35900, "6538ca031f1868672e0cadc4f3338479106bceb0972e146177b0b9dee00608d1" }
 };
 
 } // CryptoNote
