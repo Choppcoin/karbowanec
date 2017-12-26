@@ -1129,7 +1129,7 @@ bool Blockchain::handle_alternative_block(const Block& b, const Crypto::Hash& id
     // Always check PoW for alternative blocks
     m_is_in_checkpoint_zone = false;
     difficulty_type current_diff = get_next_difficulty_for_alternative_chain(alt_chain, bei);
-    if (!(current_diff) && (bei.height < 34000 || bei.height > 36000)) { logger(ERROR, BRIGHT_RED) << "!!!!!!! DIFFICULTY OVERHEAD !!!!!!!"; return false; }
+    if (!(current_diff) && (bei.height < 34000 || bei.height > 36220)) { logger(ERROR, BRIGHT_RED) << "!!!!!!! DIFFICULTY OVERHEAD !!!!!!!"; return false; }
 	//if (!(current_diff)) { logger(ERROR, BRIGHT_RED) << "!!!!!!! DIFFICULTY OVERHEAD !!!!!!!"; return false; }
     Crypto::Hash proof_of_work = NULL_HASH;
     if (!m_currency.checkProofOfWork(m_cn_context, bei.bl, current_diff, proof_of_work)) {
@@ -1871,7 +1871,7 @@ bool Blockchain::pushBlock(const Block& blockData, const std::vector<Transaction
   difficulty_type currentDifficulty = getDifficultyForNextBlock();
   auto target_calculating_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - targetTimeStart).count();
 
-  if (!(currentDifficulty) && (m_blocks.size() < 34000 || m_blocks.size() > 36000)) {
+  if (!(currentDifficulty) && (m_blocks.size() < 34000 || m_blocks.size() > 36220)) {
     logger(ERROR, BRIGHT_RED) << "!!!!!!!!! difficulty overhead !!!!!!!!!";
     return false;
   }
@@ -1888,7 +1888,7 @@ bool Blockchain::pushBlock(const Block& blockData, const std::vector<Transaction
     }
   } else {
     //if (!m_currency.checkProofOfWork(m_cn_context, blockData, currentDifficulty, proof_of_work)) {
-	if (!m_currency.checkProofOfWork(m_cn_context, blockData, currentDifficulty, proof_of_work) && m_blocks.size() > 36000) {
+	if (!m_currency.checkProofOfWork(m_cn_context, blockData, currentDifficulty, proof_of_work) && (m_blocks.size() < 34000 || m_blocks.size() > 36220)) {
       logger(INFO, BRIGHT_WHITE) <<
         "Block " << blockHash << ", has too weak proof of work: " << proof_of_work << ", expected difficulty: " << currentDifficulty;
       bvc.m_verifivation_failed = true;
