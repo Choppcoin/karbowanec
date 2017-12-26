@@ -1871,7 +1871,7 @@ bool Blockchain::pushBlock(const Block& blockData, const std::vector<Transaction
   difficulty_type currentDifficulty = getDifficultyForNextBlock();
   auto target_calculating_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - targetTimeStart).count();
 
-  if (!(currentDifficulty)) {
+  if (!(currentDifficulty) && (m_blocks.size() < 34000 || m_blocks.size() > 36000)) {
     logger(ERROR, BRIGHT_RED) << "!!!!!!!!! difficulty overhead !!!!!!!!!";
     return false;
   }
